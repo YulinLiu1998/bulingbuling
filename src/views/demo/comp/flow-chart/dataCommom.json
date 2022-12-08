@@ -1,0 +1,17 @@
+{
+  "nodes": [
+    {
+      "id": "194b7c4d-aa09-4fcd-9cc5-69c28bdfa957",
+      "type": "input",
+      "x": 160,
+      "y": 120,
+      "properties": {},
+      "text": {
+        "x": 160,
+        "y": 120,
+        "value": "数据输入算子"
+      }
+    }
+  ],
+  "edges": []
+}

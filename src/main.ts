@@ -14,10 +14,21 @@ import { setupStore } from '/@/store';
 import { setupGlobDirectives } from '/@/directives';
 import { setupI18n } from '/@/locales/setupI18n';
 import { registerGlobComp } from '/@/components/registerGlobComp';
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
+// import VueSocketIO from 'vue-socket.io';
+// import socketIO from 'socket.io-client';
+// import { registerSockets, destroySockets } from './sockets';
+
+// const socketio = new VueSocketIO({
+//   debug: true,
+//   connection: socketIO('http://127.0.0.1:5000', {
+//     autoConnect: true,
+//   }),
+// });
 
 async function bootstrap() {
   const app = createApp(App);
-
   // Configure store
   // 配置 store
   setupStore(app);
@@ -54,8 +65,14 @@ async function bootstrap() {
 
   // https://next.router.vuejs.org/api/#isready
   // await router.isReady();
+  // // 便于在任意位置获取到 socket 对象
+  // app.config.globalProperties.$socket = socketio;
 
-  app.mount('#app');
+  // // 监听事件
+  // app.config.globalProperties.$addSockets = registerSockets;
+  // // 移除事件
+  // app.config.globalProperties.$removeSockets = destroySockets;
+  app.use(Antd).mount('#app');
 }
 
 bootstrap();

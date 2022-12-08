@@ -30,7 +30,7 @@
     props: {
       prefixCls: String,
     },
-    emits: ['view-data'],
+    emits: ['view-data', 'save-data', 'run-data'],
     setup(_, { emit }) {
       const toolbarItemList = ref<ToolbarConfig[]>([
         {
@@ -72,6 +72,16 @@
           icon: 'carbon:document-view',
           tooltip: '查看数据',
         },
+        {
+          type: ToolbarTypeEnum.SAVE_DATA,
+          icon: 'carbon:save',
+          tooltip: '保存数据',
+        },
+        {
+          type: ToolbarTypeEnum.Run_DATA,
+          icon: 'material-symbols:upload-file-outline',
+          tooltip: '运行',
+        },
       ]);
 
       const { logicFlow } = useFlowChartContext();
@@ -89,6 +99,7 @@
       }
 
       const onControl = (item) => {
+        console.log(item);
         const lf = unref(logicFlow);
         if (!lf) {
           return;
@@ -114,6 +125,12 @@
             break;
           case ToolbarTypeEnum.VIEW_DATA:
             emit('view-data');
+            break;
+          case ToolbarTypeEnum.SAVE_DATA:
+            emit('save-data');
+            break;
+          case ToolbarTypeEnum.Run_DATA:
+            emit('run-data');
             break;
         }
       };

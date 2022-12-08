@@ -15,6 +15,7 @@ import { configVisualizerConfig } from './visualizer';
 import { configThemePlugin } from './theme';
 import { configImageminPlugin } from './imagemin';
 import { configSvgIconsPlugin } from './svgSprite';
+import optimizer from 'vite-plugin-optimizer';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const {
@@ -34,6 +35,12 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     vueSetupExtend(),
     VitePluginCertificate({
       source: 'coding',
+    }),
+    optimizer({
+      child_process: () => ({
+        find: /^(node:)?child_process$/,
+        code: `const child_process = import.meta.glob('child_process'); export { child_process as default }`,
+      }),
     }),
   ];
 

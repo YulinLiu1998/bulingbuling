@@ -8,4 +8,6 @@ export enum ToolbarTypeEnum {
 
   SNAPSHOT = 'snapshot',
   VIEW_DATA = 'viewData',
+  SAVE_DATA = 'saveData',
+  Run_DATA = 'runData',
 }
